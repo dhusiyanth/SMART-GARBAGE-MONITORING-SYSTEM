@@ -1,0 +1,57 @@
+int IRsensor = D0;
+int led = D2;
+int x=1;
+const char* ssid = " name ";
+const char* password = "PASS";// ENTER YOUR HOTSPOT PASSORD
+const char* host = "maker.ifttt.com";
+void setup() {
+  pinMode(IRsensor ,INPUT);
+  pinMode(led,OUTPUT);
+  pinMode(IRsensor,LOW);
+  Serial.begin(115200);
+  Serial.println("Call from Node Mcu");
+  delay(100);
+  Serial.print("Connecting to");
+  Serial.println("ssid");
+  WiFi.begin(ssid,password);
+  while(WiFi.status()!=WL_CONNECTED) {
+    digitalwrite(led,HIGH):
+    delay(100);
+    Serial.print(".");
+    digitalWrite(led,LOW);
+    delay(100);
+    Serial.println("");
+    Serial.println(WiFi.localIP());
+     }
+void loop(){
+  ir sensor=digitalRead(D0);
+
+
+
+        WiFiClient client;
+        const int httpPort = 80;
+        if(!client.connect(host,httpPort)){
+          Serial.println("connection failed");
+          digitalWrite(led,LOW);
+          delay(100);
+          digitalWrite(led,HIGH);
+          delay(100);
+          return;
+        }
+
+        if(IRsensor==HIGH)
+        {
+           string url = " ";  // ENTER YOUR IFTT URL
+           digitalWrite(led,HIGH);
+           serial.print("Requesting url:");
+           serial.println(url);
+
+           client.print(string("GET")+url+"HTTP/1.1/n"+"HOST: "+host+"\r\n"+"connection: close\r\n\r\n");
+           }
+           else{
+            serial.println("object not detected");
+            digitalWrite(led,LOW);
+            }
+           }
+  
+  
